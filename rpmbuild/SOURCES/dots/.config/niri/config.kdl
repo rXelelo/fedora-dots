@@ -1,0 +1,9 @@
+// This config is in the KDL format: https://kdl.dev
+// "/-" comments out the following node.
+// Check the wiki for a full description of the configuration:
+// https://yalter.github.io/niri/Configuration:-Introduction
+include "binds.kdl" // binds
+include "general.kdl" // startup on spawn + window
+include "user.kdl" // input and user
+include "monitors.kdl" // output setup
+

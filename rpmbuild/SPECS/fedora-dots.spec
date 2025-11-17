@@ -1,5 +1,5 @@
-Name:           fedora-dots
-Version:        17.11.2025-12:03
+Name:           rxdots
+Version:        17112025-1203
 Release:        1%{?dist}
 Summary:        niri+noctalia-shell.
 License:        GPL-3.0
@@ -13,6 +13,9 @@ Requires:  google-noto-fonts-all
 Requires:  kitty
 Requires:  nautilus
 Requires:  wlsunset
+Requires:  zen-browser
+Requires:  rxfish-theme
+Requires:  nvim
 
 # Build dependencies
 BuildRequires:  tar
@@ -28,8 +31,8 @@ BuildRequires: patchelf
 %build
 
 %install
-install -dm0755 %{buildroot}%{_bindir}
-install -dm0755 %{buildroot}%{_datadir}/applications
+install -dm0755 
+cp -a 
 
 
 
@@ -40,4 +43,4 @@ install -dm0755 %{buildroot}%{_datadir}/applications
 
 %changelog
 * Rain Xelelo <rxelelo@outlook.com>
-- Initial package for Fedora
+- updating dots
