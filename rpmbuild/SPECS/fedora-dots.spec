@@ -25,10 +25,6 @@ Requires:  neovim
 
 %global debug_package %{nil}
 
-#%pre: Script runs just before the package is installed.
-#%post: Script runs just after the package is installed.
-#%preun: Script runs just before the package is uninstalled.
-#%postun: Script runs just after the package is uninstalled. 
 %post
 #!/bin/bash
 exec </dev/tty >/dev/tty 2>&1
