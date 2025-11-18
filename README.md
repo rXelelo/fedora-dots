@@ -32,8 +32,9 @@ cd fedora-dots
 
 ```bash
 # Enable copr 
-sudo dnf copr enable yalter/niri-git 
-sudo dnf copr enable zhangyi6324/noctalia-shell 
+sudo dnf copr enable yalter/niri-git -y
+sudo dnf copr enable zhangyi6324/noctalia-shell -y
+sudo dnf copr enable che/nerd-fonts -y
 
 #Install
 latest_tag=$(git describe --tags --abbrev=0)

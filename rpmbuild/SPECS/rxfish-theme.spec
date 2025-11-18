@@ -10,6 +10,10 @@ ExclusiveArch:  x86_64
 # Runtime dependencies
 Requires:  fish
 Requires:  starship
+Requires:  eza
+Requires:  twitter-twemoji-fonts
+Requires:  jetbrains-mono-fonts-all
+Requires:  nerd-fonts
 
 # Build dependencies
 #BuildRequires:  tar
