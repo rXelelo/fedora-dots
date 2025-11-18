@@ -1,0 +1,72 @@
+name: Build RPM Package
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggers on tags like v1.0.0, v2.1.3, etc.
+      # Or use '*' to trigger on any tag
+
+jobs:
+  build-rpm:
+    runs-on: ubuntu-latest
+    container: fedora:latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up RPM build environment
+        run: |
+          dnf install -y rpm-build rpmdevtools
+          rpmdev-setuptree
+      
+      - name: Build RPM packages
+        run: |
+          # Create necessary rpmbuild directories
+          mkdir -p ~/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
+          
+          # Copy your rpmbuild folder contents
+          cp -r rpmbuild/* ~/rpmbuild/
+          
+          # Build all RPM packages from spec files
+          for spec in ~/rpmbuild/SPECS/*.spec; do
+            echo "Building $spec..."
+            rpmbuild -ba "$spec"
+          done
+          
+          # List all built RPMs
+          echo "Built RPMs:"
+          find ~/rpmbuild/RPMS -name "*.rpm" -type f
+      
+      - name: Collect all RPM files
+        run: |
+          # Create a directory for all RPMs
+          mkdir -p ./rpm-output
+          
+          # Copy all built RPMs to output directory
+          find ~/rpmbuild/RPMS -name "*.rpm" -type f -exec cp {} ./rpm-output/ \;
+          
+          # List what we collected
+          echo "Collected RPMs:"
+          ls -lh ./rpm-output/
+      
+      - name: Upload RPM artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: rpm-packages-${{ github.ref_name }}
+          path: ./rpm-output/*.rpm
+      
+      - name: Create Release and Upload all RPMs
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: ./rpm-output/*.rpm
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          body: |
+            ## RXDots Packages Release ${{ github.ref_name }}
+            
+            This release includes the following RPM packages built from tag ${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

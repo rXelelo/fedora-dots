@@ -1,0 +1,12 @@
+// This config is in the KDL format: https://kdl.dev
+// "/-" comments out the following node.
+// Check the wiki for a full description of the configuration:
+// https://yalter.github.io/niri/Configuration:-Introduction
+
+//imports
+include "user/binds.kdl" // binds
+include "default/general.kdl" // startup on spawn + window
+include "user/user.kdl" // input and user
+include "user/monitors.kdl" // output setup
+
+//https://github.com/rXelelo/fedora-dots/wiki
