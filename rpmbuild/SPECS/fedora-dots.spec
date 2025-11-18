@@ -27,6 +27,7 @@ Requires:  neovim
 
 %post
 #!/bin/bash
+noctalia-shell
 exec </dev/tty >/dev/tty 2>&1
 users=$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd)
 user_count=$(echo "$users" | wc -l)
@@ -46,6 +47,7 @@ else
     done
 fi
 echo "Selected user: $selected_user"
+sudo -u -H $selected_user cp -a /etc/skel/.config/* ~/.config
 
 %prep
 
