@@ -182,7 +182,7 @@ sudo dnf install <package-name>
 
 ## 📸 Screenshots
 
-*Add your screenshots here to showcase your setup*
+![Photo](previewe.png)
 
 ## 📄 License
 
