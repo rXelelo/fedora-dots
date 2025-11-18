@@ -48,10 +48,12 @@ echo "Selected user: $selected_user"
 %build
 
 %install
-#install -dm0755 %{buildroot}/etc/skel
-#cp -a %{SOURCE1}/* %{buildroot}/etc/skel
+install -dm0755 %{buildroot}/etc/skel/.config
+cp -a %{SOURCE1}/* %{buildroot}/etc/skel/.config
 
 %files
+/etc/skel/.config/fish/*
+/etc/skel/.config/starship.toml
 
 %changelog
 * Mon Nov 17 2025 Rain Xelelo <rxelelo@outlook.com> - %{Version}-%{Release}

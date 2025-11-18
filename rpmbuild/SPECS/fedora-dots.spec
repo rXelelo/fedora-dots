@@ -59,7 +59,8 @@ install -dm0755 %{buildroot}/etc/skel
 cp -a %{SOURCE1}/* %{buildroot}/etc/skel
 
 %files
-/etc/skel
+/etc/skel/.config/*
+/usr/local/share/.config/noctalia-shell-photos
 
 %changelog
 * Mon Nov 17 2025 Rain Xelelo <rxelelo@outlook.com> - %{Version}-%{Release}
