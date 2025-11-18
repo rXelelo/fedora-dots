@@ -20,6 +20,9 @@ Requires:  starship
 
 %post
 #!/bin/bash
+
+if [ $1 -eq 1 ]; then
+noctalia-shell
 exec </dev/tty >/dev/tty 2>&1
 users=$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd)
 user_count=$(echo "$users" | wc -l)
@@ -39,6 +42,10 @@ else
     done
 fi
 echo "Selected user: $selected_user"
+sudo -u -H $selected_user cp -a /etc/skel/.config/fish/ ~/.config/
+sudo -u -H $selected_user cp /etc/skel/.config/starship.toml ~/.config/
+elif [ $1 -eq 2 ]; then
+echo "nothing to update:)"
 
 %prep
 
