@@ -1,5 +1,5 @@
 Name:           rxfish-theme
-Version:        1.0
+Version:        stable
 Release:        1%{?dist}
 Summary:        fish theme for rxdots.
 License:        GPL-3.0

@@ -9,7 +9,7 @@ on:
 jobs:
   build-rpm:
     runs-on: ubuntu-latest
-    container: rockylinux:9
+    container: fedora:latest
     
     steps:
       - name: Checkout code

@@ -1,5 +1,5 @@
 Name:           rxdots
-Version:        1.0
+Version:        stable
 Release:        1%{?dist}
 Summary:        niri+noctalia-shell.
 License:        GPL-3.0
