@@ -65,7 +65,7 @@ jobs:
           prerelease: false
           generate_release_notes: true
           body: |
-            ## RPM Packages Release ${{ github.ref_name }}
+            ## RXDots Packages Release ${{ github.ref_name }}
             
             This release includes the following RPM packages built from tag ${{ github.ref_name }}
         env:
