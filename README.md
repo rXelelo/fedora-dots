@@ -27,8 +27,19 @@ cd fedora-dots
 # Run the installation script
 ./install.sh
 ```
+### Install Manualy using RPM system(for updates)
 
-### Install Manualy 
+```bash
+# stable
+git clone https://github.com/rXelelo/fedora-dots.git ~/fedora-dots
+
+# nightly
+git clone https://github.com/rXelelo/fedora-dots.git -b nightly ~/fedora-dots
+
+cd ~/fedora-dots
+./install-build.sh
+```
+### Install Manualy using source
 
 ```bash
 # Enable copr 
@@ -36,15 +47,27 @@ sudo dnf copr enable yalter/niri-git -y
 sudo dnf copr enable zhangyi6324/noctalia-shell -y
 sudo dnf copr enable che/nerd-fonts -y
 
+# Install Deps
+sudo dnf install niri noctalia-shell google-noto-fonts-all kitty nautilus wlsunset zen-browser neovim fish starship eza twitter-twemoji-fonts jetbrains-mono-fonts-all nerd-fonts
+
 #Install
-latest_tag=$(git describe --tags --abbrev=0)
-sudo dnf install https://github.com/rXelelo/fedora-dots/releases/download/$latest_tag/rxdots-stable-1.fc42.x86_64.rpm https://github.com/rXelelo/fedora-dots/releases/download/$latest_tag/rxfish-theme-stable-1.fc42.x86_64.rpm
+# stable
+git clone https://github.com/rXelelo/fedora-dots.git ~/fedora-dots
+
+# nightly
+git clone https://github.com/rXelelo/fedora-dots.git -b nightly ~/fedora-dots
+
+cd ~/fedora-dots
+cp -a rpmbuild/SOURCES/dots/.config/* ~/.config
+sudo cp -a rpmbuild/SOURCES/dots/usr /usr
+cp -a rpmbuild/SOURCES/fish-theme/* ~/.config
 ```
 
 ## 🔧 Requirements
 
-- **OS**: Fedora (Latest release recommended) or any other if you fix deps on your system
-- **Display**: Wayland support required
+- **OS**: Fedora (Latest release recommended) or any other if you fix deps on your distro
+- **CPU**: 2 Cores +
+- **RAM**: 4GB+
 - **GPU**: Any GPU with working Wayland drivers
 
 ## 📁 Repository Structure
