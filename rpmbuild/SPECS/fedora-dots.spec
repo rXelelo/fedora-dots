@@ -56,7 +56,9 @@ echo "Selected user: $selected_user"
 
 %install
 install -dm0755 %{buildroot}/etc/skel
-cp -a %{SOURCE1}/* %{buildroot}/etc/skel
+install -dm0755 %{buildroot}/usr
+cp -a %{SOURCE1}/.config/ %{buildroot}/etc/skel
+cp -a %{SOURCE1}/usr/* %{buildroot}/usr
 
 %files
 /etc/skel/.config/*
