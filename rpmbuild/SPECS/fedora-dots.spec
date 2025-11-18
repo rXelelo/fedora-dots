@@ -1,6 +1,6 @@
 Name:           rxdots
 Version:        stable
-Release:        1%{?dist}
+Release:        4%{?dist}
 Summary:        niri+noctalia-shell.
 License:        GPL-3.0
 URL:            https://github.com/rXelelo/fedora-dots

@@ -1,6 +1,6 @@
 Name:           rxfish-theme
 Version:        stable
-Release:        1%{?dist}
+Release:        4%{?dist}
 Summary:        fish theme for rxdots.
 License:        GPL-3.0
 URL:            https://github.com/rXelelo/fedora-dots
