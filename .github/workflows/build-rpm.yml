@@ -9,6 +9,7 @@ on:
 jobs:
   build-rpm:
     runs-on: ubuntu-latest
+    container: rockylinux:9
     
     steps:
       - name: Checkout code
@@ -16,8 +17,8 @@ jobs:
       
       - name: Set up RPM build environment
         run: |
-          sudo apt-get update
-          sudo apt-get install -y rpm rpmbuild
+          dnf install -y rpm-build rpmdevtools
+          rpmdev-setuptree
       
       - name: Build RPM packages
         run: |
