@@ -24,34 +24,40 @@ Requires:  neovim
 %description
 
 %global debug_package %{nil}
-
 %post
 #!/bin/bash
-
 if [ $1 -eq 1 ]; then
-noctalia-shell
-exec </dev/tty >/dev/tty 2>&1
-users=$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd)
-user_count=$(echo "$users" | wc -l)
-# If only one user, use it automatically
-if [ "$user_count" -eq 1 ]; then
-    selected_user="$users"
-    echo "Auto-selected user: $selected_user"
-else
-    # Multiple users - show selection menu
-    echo "Available users:"
-    select selected_user in $users; do
-        if [ -n "$selected_user" ]; then
-            break
-        else
-            echo "Invalid selection. Please try again."
-        fi
-    done
+    # First install
+    noctalia-shell
+    exec </dev/tty >/dev/tty 2>&1
+    users=$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd)
+    user_count=$(echo "$users" | wc -l)
+    
+    # If only one user, use it automatically
+    if [ "$user_count" -eq 1 ]; then
+        selected_user="$users"
+        echo "Auto-selected user: $selected_user"
+    else
+        # Multiple users - show selection menu
+        echo "Available users:"
+        select selected_user in $users; do
+            if [ -n "$selected_user" ]; then
+                break
+            else
+                echo "Invalid selection. Please try again."
+            fi
+        done
+    fi
+    
+    echo "Selected user: $selected_user"
+    sudo -u $selected_user -H cp -a /etc/skel/.config/* ~/.config
+    
 fi
-echo "Selected user: $selected_user"
-sudo -u -H $selected_user cp -a /etc/skel/.config/* ~/.config
-elif [ $1 -eq 2 ]; then
-echo "nothing to update:)"
+
+if [ $1 -eq 2 ]; then
+    # Update
+    echo "nothing to update:)"
+fi
 
 %prep
 
